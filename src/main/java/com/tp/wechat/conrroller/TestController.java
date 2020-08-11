@@ -67,6 +67,10 @@ public class TestController {
         return "jspIndex";
     }
 
+    /**
+     *乘法计算器
+     */
+
     @RequestMapping("/result")
     public String result(@PathVariable("s") String s, @PathVariable("e") String e) {
         double end = 0;
