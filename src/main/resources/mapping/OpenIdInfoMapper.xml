@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tp.wechat.mapper.OpenIdInfoMapper">
+ 
+ <!--    <resultMap id="BaseResultMap" type="com.tp.wechat.entity.OpenIdInfo">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+        <result column="realName" jdbcType="VARCHAR" property="realName" />
+    </resultMap> -->
+ 
+    <select id="getOpenId" resultType="com.tp.wechat.entity.OpenIdInfo">
+        select * from openid_info where id = #{id}  
+    </select>
+    
+        <select id="getOpenIdList" resultType="String">
+        select openid from openid_info where `status` = '1' order by id asc limit ${start},${end}
+    	</select>
+    
+      <update id="setOpenId" parameterType="com.tp.wechat.entity.OpenIdInfo" > 
+ 		 insert into openid_info (`openid`,`status`,`creat_date`) values (#{openid},#{status},#{creat_date});
+	</update>
+   
+      <update id="updateStatus" parameterType="com.tp.wechat.entity.OpenIdInfo" > 
+ 		 UPDATE openid_info SET `status` = #{status}, `creat_date` = #{creat_date} where openid = #{openid};
+		</update>
+ 
+ <update id="updateStatusList"  parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";">
+		  update  `openid_info`  set  `status` = #{item.status},`creat_date`= #{item.creat_date}  where  `openid` = #{item.openid}
+		</foreach>
+	</update>
+    <select  resultType="Integer" id="getCount">
+        select count(1) from openid_info;
+    </select>
+</mapper>

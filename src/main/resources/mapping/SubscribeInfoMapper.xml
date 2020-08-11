@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tp.wechat.mapper.SubscribeInfoMapper">
+  	<insert id="setSubscribe" parameterType="com.tp.wechat.entity.SubscribeInfo" > 
+  	 insert into subscribe_info (`openid`,`del_flag`,`creat_date`) values (#{openId},#{delFlag},#{creatDate});
+	</insert>
+		<insert id="addSubscribeList" parameterType="java.util.List" useGeneratedKeys="false">
+    			 insert into subscribe_info (`openid`,`del_flag`,`creat_date`) 
+    			values
+    			<foreach collection="list" item="item" index="index" separator=",">
+    				(
+    					#{item.openId},
+    					#{item.delFlag},
+    					#{item.creatDate}
+    				)
+    		     </foreach>		
+    </insert> 
+
+	
+	
+</mapper>

